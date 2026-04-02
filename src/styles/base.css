@@ -1,0 +1,411 @@
+:root {
+    /* ---------- Color tokens ----------  */
+    --green-50:  #FAFDF9;
+    --green-100: #EEF6EA;
+    --green-400: #66bb6a;
+    --green-700: #638652;
+
+    --pink-100:  #ffdae0;
+    --red-500:   #ef5350;
+
+    --yellow-50: #fffde7;
+    --yellow-200: #ffecb3;
+    --yellow-300:#ffd54f;
+    --orange-300: #f9a825;
+
+    --grey-50: #fafafa;
+    --grey-100:  #f0f0f0;
+    --grey-300:  #d3d3d3;
+    --grey-400: rgba(0, 0, 0, 0.35);
+    --grey-500: grey;
+
+    --brown-700: #5d4037;
+    --white-500: white; 
+
+
+    /* ---------- Semantic colors ---------- */
+    --bg-app: var(--green-50);
+    --bg-nav: var(--green-100);
+    --bg-overlay: var(--grey-400);
+    --bg-nav-bar-seperator: var(--grey-300);
+    --bg-nav-bar-hover: var(--yellow-50);
+    --bg-card: var(--white-500);
+    --bg-btn-page-selector: var(--pink-100);
+    --bg-page-indicator: var(--yellow-200);
+    --bg-btn-check: var(--green-700);
+    --bg-icon: var(--grey-100);
+    --bg-btn-play: var(--pink-100);
+    --bg-rate-bar: var(--pink-100);
+    --bg-disable: var(--grey-300);
+    --bg-unit-bar: var(--green-700);
+    --bg-spell-input: var(--grey-50);
+    --bg-correct: var(--green-100);
+    --bg-wrong: var(--pink-100);
+    --bg-left-selector: var(--green-100);
+    --bg-right-selector: var(--yellow-200);
+    
+    --text-heading: var(--green-700);
+    --text-body:  var(--brown-700);
+    --text-button: var(--red-500);
+    --text-disable: var(--grey-500);
+    --text-page-indicator: var(--orange-300);
+    --text-hightlight: var(--red-500);
+    --text-reverse: var(--white-500);
+
+    --border-default: var(--grey-100);
+    --border-hotmap: var(--pink-100);
+    --border-hotmap-hover: var(--red-500);
+    --border-correct: var(--green-400);
+    --border-wrong: var(--red-500);
+    --border-settings: var(--green-100);
+    --border-translation: var(--green-100);
+    --border-page-selector: var(--white-500);
+
+    --box-shadow: var(--grey-300);
+    
+
+    /* ---------- Radius ---------- */
+    --radius-sm: 10px;
+    --radius-md: 15px;
+    --radius-lg: 20px;
+    --radius-circle: 50%;
+}
+
+/* =====================
+   Base Elements
+   ===================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0; 
+    height: 100%; 
+    background: var(--bg-app);
+    color: var(--text-body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    font-family: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+}
+
+
+/* ---------- Typography ---------- */
+h2 {
+    font-size: 1.2rem;
+    font-weight: 700; 
+    margin: 0; 
+}
+
+p {
+    margin: 0;
+}
+
+
+ul {
+    list-style: none; 
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0; 
+    margin: 0; 
+}
+
+li, a {
+    color: var(--text-heading);
+    font: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* ---------- Form elements ---------- */
+button, select, input {
+    font: inherit; 
+    cursor: pointer;
+}
+
+button, select {
+    border-radius: var(--radius-lg);
+}
+
+select {    
+    border: 2px solid var(--border-default); 
+    padding: 0.1em 0.3em; 
+}
+
+button:active { 
+    transform: translateY(2px); 
+}
+
+/* ---------- Common Settings ---------- */
+.padding-control-container {
+    padding: 1em; 
+    height: 100%; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn-small {
+    padding: 0.3em 1em;
+    font-size: 0.8rem; 
+    border-radius: var(--radius-lg);
+}
+
+
+/* ---------- Header ---------- */
+header {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    background-color: var(--green-100);
+    border-bottom: 1.5px solid var(--border-default);
+    z-index: 1000;
+}
+
+.header-padding {
+    padding: 0 1em;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+header a {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5em 0; 
+}
+
+/* ---------- Sidebar ---------- */
+
+.side-bar {
+    margin-top: 70px; 
+    display: flex;
+    flex-direction: row; 
+    overflow-x: auto;    
+    overflow-y: hidden;  
+    white-space: nowrap; 
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-default);
+    padding: 10px;
+    gap: 15px;           
+}
+
+
+.side-bar a {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: #f0f0f0;
+    flex-shrink: 0;      /* Crucial: prevents links from squishing */
+}
+
+.side-bar a.active {
+    background-color: var(--green-600);
+    color: white;
+}
+
+
+/* ---------- Text Mode ---------- */
+.main-content {
+    height: calc(100vh - 120px); 
+}
+
+.img-container {
+    position: relative; 
+    overflow: hidden;
+    margin: 0 auto 0.3em;
+}
+
+.textbook-img {
+    object-fit: contain;
+    aspect-ratio: 1 / 1.414;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.page-control {
+    display: flex; 
+    gap:1em; 
+    justify-content: center;
+}
+
+.page-btn {
+    background: var(--pink-100); 
+    border: none;
+    color: var(--red-500); 
+    align-self: center;
+}
+
+.page-indicator {
+    background:  var(--yellow-200); 
+    color: var(--orange-300); 
+    align-self: center;
+}
+
+.hotmap-layer, .translation-layer {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%;
+    height: 100%;
+}
+
+.hotspot-box {
+    position: absolute;
+    border: 2px dashed var(--border-hotmap);
+    z-index: 2; 
+    cursor: pointer;
+}
+
+.hotspot-box:hover, .hotspot-box:focus {
+    border: 2px dashed var(--border-hotmap-hover);
+}
+
+.translation-box {
+    border: 3px solid var(--border-translation);
+    padding: 0.2em 0.4em; 
+    font-size: 0.8rem;
+    position: absolute;
+    background: white; 
+    border-radius: var(--radius-sm);
+    z-index: 100; 
+}
+
+
+/* ---------- Vocabulary Mode ---------- */
+.words-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(22em, 1fr));  
+    gap: 1em;
+}
+
+.word-card {
+    text-align: left;
+    border: 1px solid red; 
+}
+
+.word-card-top-part, .word-card-bottom-part {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+    width: 100%;
+}
+
+.word-card-top-part {
+    padding-bottom: 1em; 
+    border-bottom: 1px solid var(--border-default);
+}
+
+.word-card-bottom-part {
+    padding-top: 0.7em; 
+}
+
+.word-card .play-btn {
+    margin-left: auto; 
+}
+
+.word-icon {
+    font-size: 1.5em;
+}
+
+
+.highlight-word {
+    color: var(--text-hightlight); 
+    text-decoration: underline;
+}
+
+
+/* Dictation container */
+.dictation-container { 
+    grid-template-columns: repeat(auto-fill, minmax(16em, 1fr)); 
+}
+
+.dictation-form {
+    gap: 0.6em;
+}
+
+.spell-input {
+    padding: 0.5em 1em; 
+    border: 2px solid var(--border-default); 
+    border-radius: var(--radius-sm);
+    width: 75%; 
+    text-align: center;
+    letter-spacing: 1px; 
+    background: var(--bg-spell-input);
+    margin-bottom: 1em;
+}
+
+.spell-input:focus { 
+    outline: none;
+    background: var(--bg-card); 
+}
+
+.check-button { 
+    padding: 8px 20px; 
+    background: var(--bg-btn-check); 
+    color: var(--text-reverse); 
+    border: none; 
+    font-weight: bold;  
+}
+
+.dictation-btn-box {
+    gap: 1em;
+}
+
+
+.play-btn, .hint-btn {    
+    font-size: 1.3rem; 
+    cursor: pointer;
+}
+
+.hint-btn:active, .play-btn:active { 
+    transform: translateY(2px); 
+}
+
+.play-btn {
+    background: var(--bg-btn-play); 
+}
+
+.is-correct { 
+    border-color: var(--border-correct); 
+    background: var(--bg-correct);
+}
+
+.is-wrong { 
+    border-color: var(--border-wrong); 
+    background: var(--bg-wrong); 
+}
+
+/* =====================
+   States
+   ===================== */
+
+.is-disabled {
+    background: var(--bg-disable);
+    color: var(--text-disable);
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}

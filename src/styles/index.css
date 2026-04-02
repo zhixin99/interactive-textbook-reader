@@ -1,0 +1,54 @@
+/* (max-width: 37.5em)
+(max-width: 56.25em) */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh; 
+    margin: 0; 
+}
+
+.heading-img {
+    width: 70%; 
+    max-width: 500px;
+    min-width: 300px; 
+}
+
+.section-container {
+    width: 100%; 
+}
+
+.grade-container {
+    width: 70%;
+    margin: 0 auto; 
+    max-width: 700px; 
+
+}
+
+.grade-box {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1em; 
+}
+
+.grade-selector {
+    border-radius: var(--radius-sm);
+    padding: 0.4em 0.8em; 
+    border: 1px solid var(--border-default);
+    box-shadow: 0 5px 5px var(--box-shadow);
+}
+
+.grade-selector:hover, .grade-selector:focus {
+    transform: translateY(-1px);
+}
+
+.disable-selector {
+    background: var(--bg-left-selector);
+}
+
+.grade-status {
+    font-size: 0.8rem; 
+    color: var(--text-body);
+    background: var(--bg-right-selector);
+}
