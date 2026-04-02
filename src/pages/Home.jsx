@@ -6,7 +6,7 @@ export default function Home() {
         data.available ? (
             <Link 
                 to={`/text/${data.grade}/${data.semester}/1`}
-                className="grade-selector"
+                className="grade-selector btn"
                 key={data.id}
             >
                 {data.label}
@@ -14,7 +14,7 @@ export default function Home() {
             </Link> 
         ) : (
             <div
-                className="grade-selector disabled-selector"
+                className="grade-selector is-disabled"
                 key={data.id}
             >
                 {data.label}
@@ -25,19 +25,26 @@ export default function Home() {
     
     return (
         <>
-        <main className="flex flex-column flex-center">
-            <section className="heading-img-container">
-                <img className="heading-img" src="../../img/h1.png" alt="译林英语一点通" />
-                <h1 className="visually-hidden">译林英语一点通</h1>
+        <main className="home-page-container">
+            <section>
+                <div className="padding-control-container">
+                    <img className="heading-img" src="../../img/h1.png" alt="译林英语一点通" />
+                    <h1 className="visually-hidden">译林英语一点通</h1>
+                </div>
             </section>  
 
             <section>
-                <p>目前仅有四年级下册可学习。持续更新中！</p>
+                <div className="padding-control-container">
+                    <p>目前仅有四年级下册可学习。</p>
+                    <p>持续更新中！</p>
+                </div>
             </section>
             
-            <section className="section-container">
-                <div className="grade-container">
-                    {selectorEl}
+            <section>
+                <div className="padding-control-container">
+                    <div className="grade-container">
+                        {selectorEl}
+                    </div>
                 </div>
             </section>
         </main>
