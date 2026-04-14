@@ -1,15 +1,17 @@
 import Header from "../components/Header.jsx"
 import Sidebar from "../components/Sidebar.jsx"
-import { getMistakeList, clearMistake } from "../utility/mistakeUtils.js"
+import { clearMistake } from "../utility/clearMistake.js"
 import { textbookData } from "../data/textbookData.js"
 import { useState } from "react"
+import { useAuth } from "../context/AuthContext"
+
 
 export default function Review() {
-    const [mistakes, setMistakes] = useState(getMistakeList())
+    const { userData, user } = useAuth() 
     const [userInputs, setUserInputs] = useState({})
     const [statuses, setStatuses] = useState({})
-    
-    console.log(textbookData)
+
+    const mistakes = userData?.mistakes || []
 
     function handleInputChange(id, value) {
         setUserInputs(prev => ({ ...prev, [id]: value }))
@@ -18,31 +20,21 @@ export default function Review() {
 
     function checkAnswer(id, answer) {
         const input = (userInputs[id] || "").trim().toLowerCase()
-        const correctAnswer = answer.toLowerCase()
 
-        if (input === correctAnswer) {
+        if (input === answer.toLowerCase()) {
             setStatuses(prev => ({ ...prev, [id]: "is-correct" }))
-            clearMistake(id)
-            setMistakes(getMistakeList())
+            setTimeout(() => clearMistake(user, id), 1500)
         } else {
             setStatuses(prev => ({ ...prev, [id]: "is-wrong" }))
         }
     }
 
-    const uniqueKeyArray = Object.keys(getMistakeList())
-    
-    const mistakeArray = uniqueKeyArray.map(id => {
-        
+    const mistakeArray = mistakes.map(id => {
         const [g, s, u] = id.split('-')
-
-        const unitFolder = textbookData.filter( item => 
-            item.grade === Number(g) && item.semester === Number(s) && item.unit === Number(u))[0]
-
-        const wordData = unitFolder.words.filter(word => word.id === id)[0]
-
-        return wordData
-
-    })
+        const unit = textbookData.find(item => 
+            item.grade === Number(g) && item.semester === Number(s) && item.unit === Number(u))
+        return unit?.words?.find(word => word.id === id)
+    }).filter(Boolean)
 
     
     const mistakeEl = mistakeArray.map(vocab => (

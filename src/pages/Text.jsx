@@ -1,11 +1,12 @@
-import Header from "../components/Header.jsx"
 import React from "react"
-import Sidebar from "../components/Sidebar"
 import { speak } from "../utility/speechUtils.js"
 import { getTextbookData } from "../utility/geTextbookData.js"
+import { useAuth } from "../context/AuthContext"
+import PageControl from "../components/PageControl.jsx"
+import storeInFirebase from "../utility/storeInFirebase.js"
 
 export default function Text() {
-
+    const { user } = useAuth()
     const [currentPageIndex, setCurrentPageIndex] = React.useState(0)
     const [translationEl, setTranslationEl] = React.useState("")
 
@@ -13,11 +14,16 @@ export default function Text() {
     const maxPageIndex = pagesArray.length - 1
     const currentPage = pagesArray[currentPageIndex]
 
-    function handleNextPage() {
+    async function handleNextPage() {
         if (currentPageIndex < maxPageIndex ) {
             setCurrentPageIndex(prev => prev + 1)
         }
+
         setTranslationEl("")
+
+        if (currentPageIndex === maxPageIndex - 1) {
+            await storeInFirebase(user, "learntUnits", `G${grade}_S${semester}_U${unit}`)
+        }
 
     }
 
@@ -69,9 +75,7 @@ export default function Text() {
 
     return (
         <div onClick={() => setTranslationEl("")}>  
-            <Header />
-            <Sidebar />
-            <section className="main-content" >
+            <section className="main-content text-mode" >
                 <div className="padding-control-container">
                     <div className="img-container" id="img-container">
                         <img 
@@ -87,27 +91,15 @@ export default function Text() {
                         </div>
                     </div>
                     
-                    <div className="page-control">
-                        <button 
-                            className={`btn btn-small page-btn ${currentPageIndex === 0 ? "is-disabled" : ""}`}
-                            onClick={handleLastPage}
-                        >
-                            上一页
-                        </button>
-                        
-                        <div className="btn-small page-indicator">
-                            {currentPageIndex + 1} / {maxPageIndex + 1}
-                        </div>
-
-                        <button 
-                            className={`btn btn-small page-btn ${currentPageIndex === maxPageIndex ? "is-disabled" : ""}`}
-                            onClick={handleNextPage}
-                        >
-                            下一页
-                        </button>       
-                    </div>
+                    <PageControl 
+                        currentIndex={currentPageIndex}
+                        maxIndex={maxPageIndex}
+                        onNext={handleNextPage}
+                        onLast={handleLastPage}
+                    />
                 </div>
             </section>
+
         </div>
 
     )

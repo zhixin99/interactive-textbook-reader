@@ -1,4 +1,4 @@
-export const homeData = [
+export const gradeData = [
     { id: 1, label: "三年级上册", grade: 3, semester: 1, available: false },
     { id: 2, label: "三年级下册", grade: 3, semester: 2, available: false },
     { id: 3, label: "四年级上册", grade: 4, semester: 1, available: false },

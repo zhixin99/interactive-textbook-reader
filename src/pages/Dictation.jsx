@@ -1,15 +1,18 @@
-import Header from "../components/Header"
-import Sidebar from "../components/Sidebar"
 import { getTextbookData } from "../utility/geTextbookData.js"
 import { speak } from "../utility/speechUtils.js"
 import { useState } from "react"
-import { saveMistake } from "../utility/mistakeUtils"
+import PageControl from "../components/PageControl.jsx"
+import { useAuth } from '../context/AuthContext'
+import storeInFirebase from "../utility/storeInFirebase.js"
 
 export default function Dictation() {
-
-    const { vocabArray, unitTitle, grade, semester, unit } = getTextbookData()
+    const { user } = useAuth()
+    const { vocabArray, unitTitle } = getTextbookData()
     const [userInputs, setUserInputs] = useState({})
     const [statuses, setStatuses] = useState({})
+    const [currentPageIndex, setCurrentPageIndex] = useState(0)
+    const maxPageIndex = vocabArray.length - 1
+    const currentWord = vocabArray[currentPageIndex]
 
     function handleInputChange(id, value) {
         setUserInputs(prev => ({ ...prev, [id]: value }))
@@ -22,60 +25,79 @@ export default function Dictation() {
 
         if (input === correctAnswer) {
             setStatuses(prev => ({ ...prev, [id]: "is-correct" }))
+            storeInFirebase(user, "dictatedWords", id)
         } else {
             setStatuses(prev => ({ ...prev, [id]: "is-wrong" }))
-            saveMistake(id)
+            storeInFirebase(user, "mistakes", id)
         }
     }
 
-    const dictationEl = vocabArray.map( vocab => {
-        const currentStatus = statuses[vocab.id] || ""
+    function clearCurrentWordState(id) {
+        setUserInputs(prev => ({ ...prev, [id]: "" }))
+        setStatuses(prev => ({ ...prev, [id]: null }))
+    }
 
-        return (
-            <div className="dictation-card">
-                <form 
-                    className="dictation-form flex flex-column flex-center" 
-                    onSubmit={(e) => {
-                        e.preventDefault()
-                        checkAnswer(vocab.id, vocab.en)
-                    }}
-                >
-                    <div className="dictation-btn-box flex flex-center">
-                        <div className="play-btn icon-btn flex flex-center" onClick={() => speak(vocab.en)}>🔊</div>
-                        <div className="hint-btn icon-btn flex flex-center">💡</div>
-                    </div>
-                    <p>{vocab.en}</p>
-                    <p>{vocab.cn}</p>
-                    <input 
-                        type="text" 
-                        placeholder="输入单词" 
-                        className={`spell-input ${currentStatus}`}
-                        onChange={(e) => {handleInputChange(vocab.id, e.target.value)}}
-                    />
-                    <button 
-                        type="submit" 
-                        className="check-button"
-                    >
-                        检查
-                    </button>
-                </form>
-            </div>
-        )
-    })
+    function handleNextPage() {
+        if (currentPageIndex < maxPageIndex ) {
+            clearCurrentWordState(currentWord.id)
+            setCurrentPageIndex(prev => prev + 1)
+        }
+    }
+
+    function handleLastPage() {
+        if (currentPageIndex > 0) {
+            clearCurrentWordState(currentWord.id)
+            setCurrentPageIndex(prev => prev - 1)
+        } 
+    }
 
 
     return (
         <>
-            <Header />
-            <Sidebar />
-            <section >
-                <div className="padding-control-container">
+            <section className="main-content">
+                <div className="padding-control-container vocab-dictation-mode">
                     <h1>{unitTitle}</h1>
                     <div className="words-container">
-                        {dictationEl}
+                        <div className="word-card">
+                            <form 
+                                className="dictation-form" 
+                                onSubmit={(e) => {
+                                    e.preventDefault()
+                                    checkAnswer(currentWord.id, currentWord.en)
+                                }}
+                            >
+                                <div className="dictation-btn-box">
+                                    <div className="play-btn btn" onClick={() => speak(currentWord.en)}>🔊</div>
+                                    <div className="hint-btn btn">💡</div>
+                                </div>
+                                <p>{currentWord.en}</p>
+                                <p>{currentWord.cn}</p>
+                                <input 
+                                    type="text" 
+                                    placeholder="输入单词" 
+                                    className={`spell-input ${statuses[currentWord.id]}`}
+                                    onChange={(e) => {handleInputChange(currentWord.id, e.target.value)}}
+                                    value={userInputs[currentWord.id] || ""}
+                                />
+                                <button 
+                                    type="submit" 
+                                    className="check-button"
+                                >
+                                    检查
+                                </button>
+                            </form>
+                        </div>
                     </div>
+
+                    <PageControl 
+                        currentIndex={currentPageIndex}
+                        maxIndex={maxPageIndex}
+                        onNext={handleNextPage}
+                        onLast={handleLastPage}
+                    />
                 </div>
             </section>
+
         </>
 
     )

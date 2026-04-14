@@ -1,40 +1,14 @@
-import { useParams, useLocation, NavLink } from "react-router-dom"
-import { textbookData } from "../data/textbookData.js"
-
+import { NavLink } from "react-router-dom"
 
 export default function Sidebar() {
     
-    const { grade, semester} = useParams()
+    const NavClass = ({isActive}) => isActive ? "nav-link is-active" : "nav-link"
 
-    const path = useLocation().pathname
-
-    let mode = ""
-
-    if (path.includes("/text")) {
-        mode = "text"
-    } else if (path.includes("/vocabulary")) {
-        mode="vocabulary"
-    } else if (path.includes("/dictation")) {
-        mode="dictation"
-    } else if (path.includes("/review")) {
-        mode="review"
-    }
-
-    const unitsArray = textbookData.filter((item) => (
-            item.grade === Number(grade) && item.semester === Number(semester)
-        ))
-    
-    const sidebarEl = unitsArray.map(item => (
-        <NavLink 
-            to={`/${mode}/${grade}/${semester}/${item.unit}`}
-            key={item.unit}>
-            Unit{item.unit}
-        </NavLink>
-    ))
-    
     return (
-        <div className="side-bar">
-            {sidebarEl}
+        <div className="sidebar">
+            <NavLink className={NavClass} to={`/dashboard`}><i className="fa-solid fa-book-open"></i>主页</NavLink> 
+            <NavLink className={NavClass} to={`/learn`}><i className="fa-solid fa-language"></i>学习</NavLink>  
+            <NavLink className={NavClass} to={`/review`}><i className="fa-solid fa-triangle-exclamation"></i>错题</NavLink>
         </div>
     ) 
 }
