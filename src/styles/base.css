@@ -21,23 +21,31 @@
     --grey-400: rgba(0, 0, 0, 0.35);
     --grey-500: grey;
 
-    --black: #2C2B2B;
-    --blue: #B9E1E5;
-    --green: #BBD28F;
+    --black: #4b4b4b;
+    --grey-text: #777777;
+    /* --grey-border: #afafaf; */
+    --grey-border: #e5e5e5;
+
+    --blue: rgb(28, 176, 246);
+    --blue-shadow: rgb(4, 143, 209);
+    --green: #58cc02;
+    --yellow: rgb(255, 179, 74);
+    --orange: #FF9600;
+    --orange-shadow: #cd7808;
+    --green-shadow: rgb(88, 167, 0);
     --pink:  #FFC0CD;
     --white: white; 
-    
-
-    /* ---------- Radius ---------- */
-    --radius-sm: 10px;
-    --radius-md: 15px;
-    --radius-lg: 20px;
-    --radius-circle: 50%;
 }
 
 /* =====================
    Base Elements
    ===================== */
+
+@font-face {
+    src: url("/font/din-round-bold.ttf");
+    font-family: din-round;
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
 }
@@ -50,11 +58,17 @@ html, body {
     font-size: 1rem;
     font-weight: 600;
     text-align: center;
-    font-family: "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-family: din-round, "HarmonyOS Sans SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 
 
 /* ---------- Typography ---------- */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700; 
+    margin: 0  0 0.3em; 
+}
+
 h2 {
     font-size: 1.2rem;
     font-weight: 700; 
@@ -104,6 +118,35 @@ button:active {
 }
 
 /* ---------- Common Settings ---------- */
+
+header {
+    background-color: white;
+    border-bottom: 1.5px solid var(--grey-border);
+    z-index: 1000;
+    font-size: 0.8rem;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.centered-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer {
+    border-top: 1.5px solid var(--grey-border);
+    font-size: 0.8rem;
+    padding: 1em 2em; 
+    text-align: left;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
 .padding-control-container {
     padding: 0.5em; 
     height: 100%; 
@@ -121,17 +164,26 @@ button:active {
 
 .btn {
     cursor: pointer;
+    display: block; 
 }
 
 .btn:hover, .btn:focus {
     transform: translateY(-2px);
 }
 
-
 .btn-small {
-    padding: 0.3em 1em;
+    padding: 0.8em;
     font-size: 0.8rem; 
-    border-radius: var(--radius-lg);
+    border-radius: 12px;
+    border: none; 
+}
+
+.btn-big {
+    padding: 0.8em 3em;
+    font-size: 1rem; 
+    border-radius: 16px;
+    border: none; 
+    font-weight: bold;
 }
 
 @keyframes scrollHint {
@@ -140,8 +192,167 @@ button:active {
     100% { transform: translateX(0); }
 }
 
+
+/* ========== Home Page ========== */
+.home-page-container {
+    height: 100vh; 
+    display: flex;
+    flex-direction: column; 
+}
+
+.header-container {
+    padding: 1em 2em;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    gap: 1em; 
+}
+
+.name {
+    font-size: 1rem; 
+    color: var(--orange);
+}
+
+.home-page-background-container {
+    height: 100%; 
+    background-image: url("/img/home-page.png");
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: var(--yellow-50);
+}
+
+.sign-up-button {
+    background: var(--orange);
+    border-bottom: 4px solid var(--orange-shadow); 
+    color: white;
+    display: block;
+    margin: 0 auto; 
+    padding: 0.8
+
+}
+
+.follow-btn {
+    background: var(--blue);
+    border-bottom: 4px solid var(--blue-shadow); 
+    color: white;
+}
+
+
+/* ========== Sign Up Page ========== */
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 1em; 
+}
+
+.auth-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 20px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--grey-text);
+    cursor: pointer;
+}
+
+.progress-bar-container {
+    height: 16px;
+    background: var(--grey-border);
+    border-radius: 20px;
+    flex-grow: 1;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--orange);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.auth-title {
+    font-size: 24px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em; 
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left; 
+    color: var(--grey-text);
+}
+
+.input-group label {
+    margin-left: 4px;
+}
+
+.sign-up-input {
+    border: 2px solid var(--grey-border);
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 0.8rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.sign-up-input:focus, .sign-up-input:hover {
+    border-color: var(--orange);
+}
+
+.btn-sign-up {
+    border: none;
+    margin-top: 1em;
+    background: var(--orange);
+    border-bottom: 4px solid var(--orange-shadow); 
+    color: white;
+    display: block;
+    width: 100%;
+}
+
+.auth-footer {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em; 
+    font-size: 0.8rem;
+}
+
+.btn-sign-in {
+    background-color: #ffffff;
+    color: var(--orange);
+}
+
+.error-message {
+    color: var(--red-500);
+    font-size: 14px;
+    text-align: center;
+    padding: 8px;
+}
+
+
+/* ========== Activation Page ========== */
+.auth-description {
+    margin-bottom: 1em; 
+}
 /* ---------- Header ---------- */
-header {
+/* header {
     position: fixed; 
     top: 0; 
     left: 0; 
@@ -150,13 +361,8 @@ header {
     border-bottom: 1.5px solid var(--grey-300);
     z-index: 1000;
     font-size: 0.8rem;
-}
+} */
 
-.header-container {
-    padding: 0.5em;
-    display: flex; 
-    justify-content: space-between;
-}
 
 
 header a {
@@ -166,13 +372,12 @@ header a {
     padding: 0.5em 0; 
 }
 
+
+
 .fa-solid {
     font-size: 1rem; 
 }
 
-.avatar-name-container {
-    display: none; 
-}
 
 @media (min-width:37.5em) {
     .grid-nav {
@@ -192,25 +397,9 @@ header a {
         margin-right: auto; 
         align-items: center;
     }
-
-    .avatar {
-        width: 60px; 
-        aspect-ratio: 1 / 1;
-        overflow: hidden;
-    }
-
-    .avatar img {
-        object-fit: cover;
-        height: 100%; 
-        width: 100%; 
-        border-radius: 50%;
-    }
-
-    .name {
-        margin-right: auto;
-        font-size: 0.8rem; 
-    }
 }
+
+
 
 
 /* ---------- Sidebar ---------- */
@@ -309,7 +498,6 @@ header a {
 
 /* ---------- Home Page ---------- */
 .home-page-container {
-    margin-top: 70px; 
     white-space: normal; 
     overflow-y: auto;
 }

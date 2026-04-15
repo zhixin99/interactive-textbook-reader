@@ -54,36 +54,47 @@ export default function ActivationPage() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-white font-mono">
-            <div className="max-w-md w-full p-8 border-2 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
-                <h1 className="text-2xl font-bold mb-2 uppercase tracking-tighter">请输入激活码</h1>
-                <p className="text-sm text-gray-600 mb-6">输入石老师后台发送给你的激活码来解锁全部功能</p>
-                
-                <form onSubmit={handleActivate} className="space-y-4">
-                    <input 
-                        type="text" 
-                        value={inputCode}
-                        onChange={(e) => setInputCode(e.target.value)}
-                        placeholder="XXXX-XXXX-XXXX"
-                        className="w-full p-3 border-2 border-black focus:outline-none focus:bg-yellow-50 placeholder-gray-400"
-                        required
-                    />
-                    
-                    <button 
-                        type="submit"
-                        disabled={status === 'loading'}
-                        className="w-full bg-black text-white p-3 font-bold hover:bg-gray-800 transition-colors disabled:bg-gray-400"
-                    >
-                        {status === 'loading' ? '验证中...' : '激活'}
-                    </button>
-                </form>
-
-                <div className="mt-8 pt-6 border-t border-dashed border-gray-300">
-                    <p className="text-xs text-gray-500">
-                        没有激活码？ <a href="https://www.xiaohongshu.com/user/profile/66c362ce000000000d026ceb" target="_blank" className="underline font-bold">联系石老师</a>
-                    </p>
+        <main className="centered-main">
+            <section className="auth-card">
+                <div className="auth-header">
+                    <button onClick={() => navigate('/')} className="back-button">✕</button>
+                    <div className="progress-bar-container">
+                        <div className="progress-bar-fill"></div>
+                    </div>
                 </div>
-            </div>
-        </div>
+
+                <div>
+                    <h2 className="auth-title">输入激活码</h2>
+                    
+                    <form onSubmit={handleActivate} className="auth-form">
+
+                        <div className="input-group">
+                            <label>激活码</label>
+                            <input 
+                                type="text" 
+                                value={inputCode}
+                                onChange={(e) => setInputCode(e.target.value)}
+                                placeholder="XXXX-XXXX-XXXX"
+                                className="sign-up-input"
+                                required
+                            />
+                        </div>
+
+                        <button 
+                            type="submit"
+                            disabled={status === 'loading'}
+                            className="btn btn-big btn-sign-up"
+                        >
+                            {status === 'loading' ? '验证中...' : '激活'}
+                        </button>
+                    </form>
+
+                    <div className="auth-footer">
+                        <span>没有激活码？</span>
+                        <a href="https://www.xiaohongshu.com/user/profile/66c362ce000000000d026ceb" target="_blank" className="btn btn-small btn-sign-in">联系石老师</a>
+                    </div>
+                </div>
+            </section>
+        </main>
     );
 }
