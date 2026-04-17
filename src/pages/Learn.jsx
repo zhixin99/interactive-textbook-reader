@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext'
 import { db } from "../firebaseConfig"
 import { doc, setDoc } from "firebase/firestore"
 import { useState } from "react"
+import { useTranslation } from 'react-i18next'
 
 
 export default function Learn() {
@@ -11,9 +12,10 @@ export default function Learn() {
     const { userData, user } = useAuth()
     const [isSaving, setIsSaving] = useState(false)
     const navigate = useNavigate()
+    const { t } = useTranslation()
 
     if (!userData || !userData.currentGrade) {
-        return <div className="p-8 font-mono">加载中...</div>;
+        return <div className="p-8 font-mono">{t('dashboard.load')}</div>;
     }
 
     const unitsArray = textbookData.filter((item) => (
@@ -55,7 +57,7 @@ export default function Learn() {
                 onClick={() => handleSelect(item.grade, item.semester, item.unit)}
                 className="btn btn-medium btn-orange start-btn"
             >
-                开始学习
+                {t('dashboard.start')}
             </button>
         </div>
 
@@ -66,7 +68,7 @@ export default function Learn() {
         <div className="learn-container">
             {userData.currentUnit && (
                 <section className="study-box width-limit">
-                    <h2><i class="fa-regular fa-hourglass"></i> 上次学习</h2>
+                    <h2><i class="fa-regular fa-hourglass"></i> {t('dashboard.last_lesson')}</h2>
                     
                     <div className="unit-container">
                         <div className="unit-container-top">
@@ -81,14 +83,14 @@ export default function Learn() {
                             onClick={() => navigate(`/learn/${userData.currentGrade}/${userData.currentSemester}/${userData.currentUnit}/text`)}
                             className="btn btn-medium btn-orange start-btn"
                         >
-                            继续学习 →
+                            {t('dashboard.continue')}
                         </button>
                     </div>
                 </section>
             )}
 
             <section className="study-box">
-                <h2><i class="fa-solid fa-chalkboard"></i> 所有课程</h2>
+                <h2><i class="fa-solid fa-chalkboard"></i> {t('dashboard.courses')}</h2>
                 <div className="units-container">
                     {unitsEl}
                 </div>

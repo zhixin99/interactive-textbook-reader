@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 export default function PageControl({ 
     currentIndex, 
     maxIndex, 
@@ -6,6 +8,7 @@ export default function PageControl({
 }) {
 
     const progress = ((currentIndex + 1) / (maxIndex + 1)) * 100;
+    const { t } = useTranslation()
 
     return (
         
@@ -21,7 +24,7 @@ export default function PageControl({
                 onClick={onLast}
                 disabled={currentIndex === 0}
             >
-                上一页
+                {t('learn.last')}
             </button>
 
             <button 
@@ -29,7 +32,7 @@ export default function PageControl({
                 onClick={onNext}
                 disabled={currentIndex === maxIndex}
             >
-                下一页
+                {t('learn.next')}
             </button>       
         </div>
     )

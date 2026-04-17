@@ -1,0 +1,59 @@
+{
+    "home": {
+        "header": "Teacher Shi's English",
+        "title": "Yilin English Interactive Reader",
+        "start_button": "Start Learning",
+        "footer": "Xiaohongshu & WeChat: shlshyy",
+        "follow_button": "Follow Now",
+        "create_account_title": "Create Profile",
+        "email": "Email",
+        "password": "Password",
+        "password_placeholder": "At least 6 characters",
+        "create_account_button": "Create Account",
+        "email_is_registered": "Email is already registered",
+        "wrong_account": "Incorrect input, please try again",
+        "creating": "Creating account...",
+        "have_account": "Already have an account?",
+        "log_in_footer": "Log in here", 
+        "log_in_title": "Log In",
+        "activation_title": "Enter Activation Code",
+        "activation_code": "Activation Code",
+        "activate": "Activate",
+        "validating": "Validating...",
+        "no_activation_code": "No activation code?",
+        "contact_shi": "Contact Teacher Shi",
+        "explain": "Currently, only Grade 4 Semester 2 is available.",
+        "updating": "More content coming soon!",
+        "available": "Available",
+        "not_available": "Coming Soon"
+    },
+
+    "dashboard": {
+        "grade": "G4S2", 
+        "load": "Loading...",
+        "dashboard": "Dashboard",
+        "learn": "Learn",
+        "mistakes": "Mistakes", 
+        "progress": "Learning Progress",
+        "have_studied": "Completed",
+        "unit": " Units",
+        "have_dictated": "Mastered",
+        "words": " Words",
+        "last_lesson": "Last Lesson",
+        "continue": "Continue Learning",
+        "courses": "All Courses",
+        "start": "Start Learning",
+        "my_mistakes": "My Mistakes",
+        "hint": "Hint",
+        "check": "Check",
+        "inputing": "Type the word..."
+    },
+    
+    "learn": {
+        "next": "Next",
+        "last": "Previous",
+        "textbook": "Textbook", 
+        "vocabulary": "Vocabulary", 
+        "dictation": "Dictation"
+    }
+}

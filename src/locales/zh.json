@@ -1,0 +1,61 @@
+{
+	"home": {
+		"header": "小红书石老师英语",
+		"title": "译林英语一点通",
+		"start_button": "开始学习",
+		"footer": "小红书账号&微信号shlshyy",
+		"follow_button": "马上关注",
+		"create_account_title": "创建个人档案",
+		"email": "邮箱",
+		"password": "密码",
+		"password_placeholder": "需设置至少6位密码",
+		"create_account_button": "创建账号",
+		"email_is_registered": "邮箱已被注册",
+		"wrong_account": "输入有误，请重试",
+		"creating": "正在创建...",
+		"have_account": "已有账号？",
+		"log_in_footer": "立刻登录", 
+		"log_in_title": "登录",
+		"activation_title": "输入激活码",
+		"activation_code": "激活码",
+		"activate": "激活",
+		"validating": "验证中",
+		"no_activation_code": "没有激活码？",
+		"contact_shi": "联系石老师",
+		"explain": "目前仅有四年级下册可学习。",
+		"updating": "持续更新中！",
+		"available": "可学习",
+		"not_available": "即将开放"
+
+	},
+
+	"dashboard": {
+		"grade": "四年级下册", 
+		"load": "加载中...",
+		"dashboard": "主页",
+		"learn": "学习",
+		"mistakes": "错题", 
+		"progress": "学习进度",
+		"have_studied": "已学",
+		"unit": "个单元",
+		"have_dictated": "已默",
+		"words": "个单词",
+		"last_lesson": "上次学习",
+		"continue": "继续学习",
+		"courses": "所有课程",
+		"start": "开始学习",
+		"my_mistakes": "我的错题",
+		"hint": "提示",
+		"check": "检查",
+		"inputing": "输入单词"
+	},
+	
+	"learn": {
+		"grade": "四年级下册", 
+		"next": "下一页",
+		"last": "上一页",
+		"textbook": "课文", 
+		"vocabulary": "单词", 
+		"dictation": "默写"
+	}
+}

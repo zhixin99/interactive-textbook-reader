@@ -1,9 +1,15 @@
+import { useTranslation } from 'react-i18next'
+import LanguageSwitcher from "./LanguageSwitcher";
+
 export default function HomeHeader() {
+    const { t } = useTranslation()
     return (
         <header>
             <div className="header-container">
-                <div className="name">小红书石老师英语</div>
-            </div>               
+                <div className="name">{t('home.header')}</div>
+            </div>        
+
+            <LanguageSwitcher />       
         </header>
     )
 }

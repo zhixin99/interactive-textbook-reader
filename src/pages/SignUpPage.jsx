@@ -3,12 +3,14 @@ import { auth, db } from '../firebaseConfig'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export default function SignUpPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const { t } = useTranslation()
     
     const navigate = useNavigate()
 
@@ -47,11 +49,11 @@ export default function SignUpPage() {
                 </div>
 
                 <div>
-                    <h2 className="auth-title">创建个人档案</h2>
+                    <h2 className="auth-title">{t('home.create_account_title')}</h2>
                     
                     <form onSubmit={handleSignUp} className="auth-form">
                         <div className="input-group">
-                            <label>邮箱</label>
+                            <label>{t('home.email')}</label>
                             <input
                                 type="email"
                                 required
@@ -63,19 +65,19 @@ export default function SignUpPage() {
                         </div>
 
                         <div className="input-group">
-                            <label>密码</label>
+                            <label>{t('home.password')}</label>
                             <input
                                 type="password"
                                 required
                                 className="input-box"
-                                placeholder="需设置至少6位密码"
+                                placeholder={t('home.password_placeholder')}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
 
                         {error && <div className="error-message">
-                            {error === "auth/email-already-in-use" ? "邮箱已被注册" : "输入有误，请重试"}
+                            {error === "auth/email-already-in-use" ? t('home.email_is_registered') : t('home.wrong_account')}
                         </div>}
 
                         <button
@@ -83,14 +85,14 @@ export default function SignUpPage() {
                             disabled={loading}
                             className="btn btn-big btn-orange btn-sign-up"
                         >
-                            {loading ? '正在创建...' : '创建账号'}
+                            {loading ? t('home.creating') : t('home.create_account_button')}
                         </button>
                     </form>
 
                     <div className="auth-footer">
-                        <span>已有账号？</span>
+                        <span>{t('home.have_account')}</span>
                         <button onClick={() => navigate('/login')} className="btn btn-small btn-no-background">
-                            立刻登录
+                            {t('home.log_in_footer')}
                         </button>
                     </div>
                 </div>

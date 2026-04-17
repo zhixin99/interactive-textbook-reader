@@ -1,16 +1,15 @@
-import Header from "../components/Header.jsx"
-import Sidebar from "../components/Sidebar.jsx"
 import { clearMistake } from "../utility/clearMistake.js"
 import { textbookData } from "../data/textbookData.js"
 import { useState } from "react"
 import { useAuth } from "../context/AuthContext"
 import { speak } from "../utility/speechUtils.js"
-
+import { useTranslation } from 'react-i18next'
 
 export default function Review() {
     const { userData, user } = useAuth() 
     const [userInputs, setUserInputs] = useState({})
     const [statuses, setStatuses] = useState({})
+    const { t } = useTranslation()
    
     const mistakes = userData?.mistakes || []
     const mistakesObj = {}
@@ -42,10 +41,6 @@ export default function Review() {
         setHintStatus(prev => ({...prev, [id]: !prev[id]}))
     }
 
-    function clearCurrentWordState(id) {
-        setUserInputs(prev => ({ ...prev, [id]: "" }))
-        setStatuses(prev => ({ ...prev, [id]: null }))
-    }
 
     const mistakeArray = mistakes.map(id => {
         const [g, s, u] = id.split('-')
@@ -80,7 +75,7 @@ export default function Review() {
                         <div className="form-bottom-part">
                             <input 
                                 type="text" 
-                                placeholder="输入单词" 
+                                placeholder={t('dashboard.inputing')}
                                 className={`input-box ${statuses[vocab.id]}`}
                                 onChange={(e) => handleInputChange(vocab.id, e.target.value)}
                             />
@@ -90,7 +85,7 @@ export default function Review() {
                                     className="btn btn-medium btn-green"
                                     onClick={() => handleHint(vocab.id)}
                                 >
-                                    <i class="fa-regular fa-lightbulb"></i> 提示
+                                    <i class="fa-regular fa-lightbulb"></i> {t('dashboard.hint')}
                                 </div>
                                 <div 
                                     className={!hintStatus[vocab.id] ? "visually-hidden" : ""}
@@ -103,7 +98,7 @@ export default function Review() {
                                 type="submit" 
                                 className="btn btn-small btn-orange"
                             >
-                                检查
+                                {t('dashboard.check')}
                             </button>
                         </div>
                     </form>
@@ -112,7 +107,7 @@ export default function Review() {
     ))
     return (
         <div className="study-box">
-            <h2><i className="fa-solid fa-triangle-exclamation"></i> 我的错题</h2>
+            <h2><i className="fa-solid fa-triangle-exclamation"></i> {t('dashboard.my_mistakes')}</h2>
             {mistakeEl}
         </div>
     )

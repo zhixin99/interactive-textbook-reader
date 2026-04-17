@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { auth } from '../firebaseConfig';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'
 
 export default function LoginPage() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
-    
+    const { t } = useTranslation()
     const navigate = useNavigate()
 
     const handleLogin = async (e) => {
@@ -33,7 +34,7 @@ export default function LoginPage() {
         <main className="centered-main">
             <section className="auth-card">
                 <div>
-                    <h2 className="auth-title">登录</h2>
+                    <h2 className="auth-title">{t('home.log_in_title')}</h2>
                     
                     {error && (
                     <div className="error-message">
@@ -43,7 +44,7 @@ export default function LoginPage() {
 
                     <form onSubmit={handleLogin} className="auth-form">
                         <div className="input-group">
-                            <label>邮箱</label>
+                            <label>{t('home.email')}</label>
                             <input
                                 type="email"
                                 required
@@ -55,7 +56,7 @@ export default function LoginPage() {
                         </div>
 
                         <div className="input-group">
-                            <label>密码</label>
+                            <label>{t('home.password')}</label>
                             <input
                                 type="password"
                                 required
@@ -71,7 +72,7 @@ export default function LoginPage() {
                             disabled={loading}
                             className="btn btn-big btn-orange"
                         >
-                            {loading ? '验证中...' : '登录'}
+                            {loading ? t('home.validating') : t('home.log_in_title')}
                         </button>
                     </form>
                 </div>

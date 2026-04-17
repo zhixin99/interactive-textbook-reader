@@ -3,41 +3,22 @@
 
 :root {
     /* ---------- Color tokens ----------  */
-    --green-50:  #FAFDF9;
-    --green-100: #EEF6EA;
-    --green-400: #66bb6a;
-    --green-700: #638652;
-
-    --red-500:   #ef5350;
-
-    --yellow-50: #fffcf3;
-    --yellow-200: #ffecb3;
-    --yellow-300:#ffd54f;
-    --orange-300: #f9a825;
-
-
-
-
     --black: #293749;
     --grey-text: #777777;
     --grey-border: #e5e5e5;
     --grey-background: #f6f6f6;
-
     --blue: rgb(28, 176, 246);
     --blue-shadow: rgb(4, 143, 209);
     --green: #66bb6a;
-    --yellow: rgb(255, 179, 74);
+    --green-background: #EEF6EA;
+    --green-border: #66bb6a;
+    --green-shadow: rgb(88, 167, 0);
+    --yellow: #fffcf3;
     --orange: #FF9600;
     --orange-shadow: #cd7808;
-    --green-shadow: rgb(88, 167, 0);
     --pink:  #FFF5F5;
     --cyan: #E3FFF7;
-    --white: white; 
 }
-
-/* =====================
-   Base Elements
-   ===================== */
 
 @font-face {
     src: url("/font/din-round-bold.ttf");
@@ -59,7 +40,7 @@ html, body {
 }
 
 
-/* ---------- Typography ---------- */
+/* ========== Typography ========== */
 h1 {
     font-size: 2.5rem;
     font-weight: 700; 
@@ -145,6 +126,7 @@ button:active {
     transform: translateY(2px); 
 }
 
+
 /* ========== Common Settings ========== */
 main {
     flex-grow: 1;
@@ -166,7 +148,13 @@ main {
 .btn:hover, .btn:focus {
     transform: translateY(-2px);
 }
-
+.btn-mini {
+    padding: 0.5em 0.8em;
+    font-size: 0.8rem; 
+    border-radius: 12px;
+    border: none; 
+    background-color: var(--grey-background);
+}
 .btn-small {
     padding: 0.8em;
     font-size: 0.8rem; 
@@ -261,7 +249,7 @@ main {
 
 .main-content {
     padding: 1rem 1rem 4.5rem 1rem;
-    background: var(--yellow-50);
+    background: var(--yellow);
     margin-top: 3.5rem; 
     height: auto; 
     min-height: 100vh;
@@ -272,7 +260,10 @@ main {
     }
 }
 
+
+
 /* ========== Dashboard Sidebar ========== */
+
 .sidebar {
     position: fixed; 
     bottom: 0; 
@@ -380,10 +371,6 @@ main {
 }
 
 
-/* ========== Learn Layout Mode Selector ========== */
-
-
-
 
 /* ========== Home Page ========== */
 .home-page-container {
@@ -403,7 +390,7 @@ main {
     background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: var(--yellow-50);
+    background-color: var(--yellow);
 }
 
 .home-page-text-container {
@@ -522,10 +509,10 @@ main {
 
 /* ========== Grade Select Page ========== */
 .grade-select-container {
-    background: var(--yellow-50);
+    background: var(--yellow);
 }
 .grade-container {
-    display: flex; 
+    display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 1em; 
 }
@@ -645,8 +632,6 @@ main {
 }
 
 
-
-
 /* ========== Review ========== */
 .word-container {
     border: 1px solid var(--grey-border);
@@ -695,7 +680,7 @@ main {
     align-items: center;    
     justify-content: center; 
     font-size: 1.5em;
-    background-color: var(--yellow-50); 
+    background-color: var(--yellow); 
     border-radius: 50%;
     aspect-ratio: 1 / 1;
     width: 2em; 
@@ -728,8 +713,8 @@ main {
 }
 
 .is-correct { 
-    border-color: var(--green-400); 
-    background: var(--green-100);
+    border-color: var(--green-border); 
+    background: var(--green-background);
 }
 
 .is-wrong { 

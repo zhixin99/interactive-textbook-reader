@@ -3,13 +3,15 @@ import { db } from '../firebaseConfig';
 import { useAuth } from '../context/AuthContext'; 
 import { collection, query, where, getDocs, updateDoc, doc } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
-import { setDoc } from "firebase/firestore";
+import { setDoc } from "firebase/firestore"
+import { useTranslation } from 'react-i18next'
 
 export default function ActivationPage() {
     const [inputCode, setInputCode] = useState('');
     const [status, setStatus] = useState('idle'); 
     const { user, setIsPaid } = useAuth(); 
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+    const { t } = useTranslation()
 
     const handleActivate = async (e) => {
         e.preventDefault();
@@ -64,12 +66,12 @@ export default function ActivationPage() {
                 </div>
 
                 <div>
-                    <h2 className="auth-title">输入激活码</h2>
+                    <h2 className="auth-title">{t('home.activation_title')}</h2>
                     
                     <form onSubmit={handleActivate} className="auth-form">
 
                         <div className="input-group">
-                            <label>激活码</label>
+                            <label>{t('home.activation_code')}</label>
                             <input 
                                 type="text" 
                                 value={inputCode}
@@ -85,18 +87,18 @@ export default function ActivationPage() {
                             disabled={status === 'loading'}
                             className="btn btn-big btn-orange"
                         >
-                            {status === 'loading' ? '验证中...' : '激活'}
+                            {status === 'loading' ? t('home.validating') : t('home.activate')}
                         </button>
                     </form>
 
                     <div className="auth-footer">
-                        <span>没有激活码？</span>
+                        <span>{t('home.no_activation_code')}</span>
                         <a 
                             href="https://www.xiaohongshu.com/user/profile/66c362ce000000000d026ceb" 
                             target="_blank" 
                             className="btn btn-small btn-no-background"
                         >
-                            联系石老师
+                            {t('home.contact_shi')}
                         </a>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import PageControl from "../components/PageControl.jsx"
 import { useAuth } from '../context/AuthContext'
 import storeInFirebase from "../utility/storeInFirebase.js"
+import { useTranslation } from 'react-i18next'
 
 export default function Dictation() {
     const { user } = useAuth()
@@ -13,6 +14,7 @@ export default function Dictation() {
     const [currentPageIndex, setCurrentPageIndex] = useState(0)
     const maxPageIndex = vocabArray.length - 1
     const currentWord = vocabArray[currentPageIndex]
+    const { t } = useTranslation()
 
     const vocabObj = {}
 
@@ -99,7 +101,7 @@ export default function Dictation() {
                         <div className="form-bottom-part">
                             <input 
                                 type="text" 
-                                placeholder="输入单词" 
+                                placeholder={t('dashboard.inputing')}
                                 className={`input-box ${statuses[currentWord.id]}`}
                                 onChange={(e) => {handleInputChange(currentWord.id, e.target.value)}}
                                 value={userInputs[currentWord.id] || ""}
@@ -110,7 +112,7 @@ export default function Dictation() {
                                     className="btn btn-medium btn-green"
                                     onClick={() => handleHint(currentWord.id)}
                                 >
-                                    <i class="fa-regular fa-lightbulb"></i> 提示
+                                    <i class="fa-regular fa-lightbulb"></i> {t('dashboard.hint')}
                                 </div>
                                 <div 
                                     className={!hintStatus[currentWord.id] ? "visually-hidden" : ""}
@@ -123,7 +125,7 @@ export default function Dictation() {
                                 type="submit" 
                                 className="btn btn-small btn-orange"
                             >
-                                检查
+                                {t('dashboard.check')}
                             </button>
                         </div>
                     </form>

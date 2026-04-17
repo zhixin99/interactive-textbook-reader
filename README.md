@@ -4,4 +4,5 @@ This is an interactive textbook reader for the primiary school students in China
 ## Install
 ```
 npm install firebase
+npm install i18next react-i18next i18next-browser-languagedetector
 ```
