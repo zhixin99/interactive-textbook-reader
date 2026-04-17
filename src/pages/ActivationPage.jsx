@@ -75,7 +75,7 @@ export default function ActivationPage() {
                                 value={inputCode}
                                 onChange={(e) => setInputCode(e.target.value)}
                                 placeholder="XXXX-XXXX-XXXX"
-                                className="sign-up-input"
+                                className="input-box"
                                 required
                             />
                         </div>
@@ -83,7 +83,7 @@ export default function ActivationPage() {
                         <button 
                             type="submit"
                             disabled={status === 'loading'}
-                            className="btn btn-big btn-sign-up"
+                            className="btn btn-big btn-orange"
                         >
                             {status === 'loading' ? '验证中...' : '激活'}
                         </button>
@@ -91,7 +91,13 @@ export default function ActivationPage() {
 
                     <div className="auth-footer">
                         <span>没有激活码？</span>
-                        <a href="https://www.xiaohongshu.com/user/profile/66c362ce000000000d026ceb" target="_blank" className="btn btn-small btn-sign-in">联系石老师</a>
+                        <a 
+                            href="https://www.xiaohongshu.com/user/profile/66c362ce000000000d026ceb" 
+                            target="_blank" 
+                            className="btn btn-small btn-no-background"
+                        >
+                            联系石老师
+                        </a>
                     </div>
                 </div>
             </section>

@@ -6,11 +6,15 @@ export default function LearningLayout() {
     
     return (
         <>  
-            <UnitSelector />
             <ModeSelector />
-            <main>
-                <Outlet />
-            </main>
+            
+            <div className="content-wrapper">
+                <UnitSelector />
+                <main>
+                    <Outlet />
+                </main>
+            </div>
+
         </>
 
     )

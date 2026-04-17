@@ -1,19 +1,25 @@
-import React from "react"
+import { useState, useEffect } from "react"
 import { speak } from "../utility/speechUtils.js"
 import { getTextbookData } from "../utility/geTextbookData.js"
 import { useAuth } from "../context/AuthContext"
 import PageControl from "../components/PageControl.jsx"
 import storeInFirebase from "../utility/storeInFirebase.js"
 
+
 export default function Text() {
     const { user } = useAuth()
-    const [currentPageIndex, setCurrentPageIndex] = React.useState(0)
-    const [translationEl, setTranslationEl] = React.useState("")
+    const [currentPageIndex, setCurrentPageIndex] = useState(0)
+    const [translationEl, setTranslationEl] = useState("")
 
     const { pagesArray, grade, semester, unit } = getTextbookData()
     const maxPageIndex = pagesArray.length - 1
     const currentPage = pagesArray[currentPageIndex]
 
+    useEffect(() => {
+        setCurrentPageIndex(0)
+        setTranslationEl("")
+    }, [grade, semester, unit])
+    
     async function handleNextPage() {
         if (currentPageIndex < maxPageIndex ) {
             setCurrentPageIndex(prev => prev + 1)
@@ -75,8 +81,15 @@ export default function Text() {
 
     return (
         <div onClick={() => setTranslationEl("")}>  
+
             <section className="main-content text-mode" >
-                <div className="padding-control-container">
+                    <PageControl 
+                        currentIndex={currentPageIndex}
+                        maxIndex={maxPageIndex}
+                        onNext={handleNextPage}
+                        onLast={handleLastPage}
+                    />
+
                     <div className="img-container" id="img-container">
                         <img 
                             className="textbook-img" 
@@ -90,14 +103,7 @@ export default function Text() {
                             {translationEl}
                         </div>
                     </div>
-                    
-                    <PageControl 
-                        currentIndex={currentPageIndex}
-                        maxIndex={maxPageIndex}
-                        onNext={handleNextPage}
-                        onLast={handleLastPage}
-                    />
-                </div>
+                
             </section>
 
         </div>

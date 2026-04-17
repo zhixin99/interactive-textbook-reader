@@ -47,7 +47,7 @@ export default function LoginPage() {
                             <input
                                 type="email"
                                 required
-                                className="sign-up-input"
+                                className="input-box"
                                 placeholder="name@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -59,7 +59,7 @@ export default function LoginPage() {
                             <input
                                 type="password"
                                 required
-                                className="sign-up-input"
+                                className="input-box"
                                 placeholder="••••••••"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -69,7 +69,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="btn btn-big btn-sign-up"
+                            className="btn btn-big btn-orange"
                         >
                             {loading ? '验证中...' : '登录'}
                         </button>

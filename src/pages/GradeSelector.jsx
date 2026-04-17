@@ -31,7 +31,7 @@ export default function gradeSelector() {
     const selectorEl = gradeData.map( data => (
         data.available ? (
             <button 
-                className="grade-selector btn"
+                className="grade-btn btn btn-small"
                 key={data.id}
                 onClick={() => handleSaveSelection(data.grade, data.semester)}
             >
@@ -40,7 +40,7 @@ export default function gradeSelector() {
             </button> 
         ) : (
             <div
-                className="grade-selector is-disabled"
+                className="btn-small is-disabled"
                 key={data.id}
             >
                 {data.label}
@@ -52,23 +52,19 @@ export default function gradeSelector() {
 
     
     return (
-        <>
-        <main className="home-page-container">
-            <section>
-                <div className="padding-control-container">
+        <main className="centered-main grade-select-container">
+            <section className="auth-card">
+                <div className="btn">
                     <p>目前仅有四年级下册可学习。</p>
                     <p>持续更新中！</p>
                 </div>
-            </section>
             
-            <section>
-                <div className="padding-control-container">
+                <div>
                     <div className="grade-container">
                         {selectorEl}
                     </div>
                 </div>
             </section>
         </main>
-        </>
     )
 }

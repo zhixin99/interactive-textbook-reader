@@ -8,12 +8,12 @@ export default function Home() {
     return (
         <main>
             <section className="home-page-background-container">
-                <div className="padding-control-container">
+                <div className="home-page-text-container">
                     <h1>译林英语一点通</h1>
                     <button 
                         aria-label="A button to log in"
                         onClick={() => navigate('/sign')}
-                        className="btn btn-big sign-up-button"
+                        className="btn btn-big btn-orange sign-up-button"
                     >
                         开始学习
                     </button>

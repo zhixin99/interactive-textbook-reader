@@ -4,13 +4,16 @@ import Header from "../components/Header"
 
 export default function MainLayout() {
     return (
-        <>
-            <Header />
+        <div className="layout-container">
             <Sidebar />
-            <main>
-                <Outlet />
-            </main>
-        </>
+            
+            <div className="content-wrapper">
+                <Header />
+                <main className="main-content">
+                    <Outlet />
+                </main>
+            </div>
+        </div>
 
     )
 }

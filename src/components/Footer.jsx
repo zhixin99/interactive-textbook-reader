@@ -6,7 +6,7 @@ export default function Footer () {
             </div>
                 
             <a 
-                className="btn btn-small follow-btn"
+                className="btn btn-small btn-blue"
                 href="https://www.xiaohongshu.com/user/profile/66c362ce000000000d026ceb"
                 target="_blank">
                 马上关注

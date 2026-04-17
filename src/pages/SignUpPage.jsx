@@ -55,7 +55,7 @@ export default function SignUpPage() {
                             <input
                                 type="email"
                                 required
-                                className="sign-up-input"
+                                className="input-box"
                                 placeholder="name@example.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -67,7 +67,7 @@ export default function SignUpPage() {
                             <input
                                 type="password"
                                 required
-                                className="sign-up-input"
+                                className="input-box"
                                 placeholder="需设置至少6位密码"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -81,7 +81,7 @@ export default function SignUpPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="btn btn-big btn-sign-up"
+                            className="btn btn-big btn-orange btn-sign-up"
                         >
                             {loading ? '正在创建...' : '创建账号'}
                         </button>
@@ -89,7 +89,7 @@ export default function SignUpPage() {
 
                     <div className="auth-footer">
                         <span>已有账号？</span>
-                        <button onClick={() => navigate('/login')} className="btn btn-small btn-sign-in">
+                        <button onClick={() => navigate('/login')} className="btn btn-small btn-no-background">
                             立刻登录
                         </button>
                     </div>

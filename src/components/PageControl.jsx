@@ -4,22 +4,28 @@ export default function PageControl({
     onNext, 
     onLast 
 }) {
+
+    const progress = ((currentIndex + 1) / (maxIndex + 1)) * 100;
+
     return (
+        
         <div className="page-control">
+
+            <div className="progress-bar-container">
+                <div className="progress-bar-fill" style={{width: `${progress}%`}}></div>
+            </div>
+
+
             <button 
-                className={`btn btn-small page-btn ${currentIndex === 0 ? "is-disabled" : ""}`}
+                className={`btn btn-small btn-orange ${currentIndex === 0 ? "is-disabled" : ""}`}
                 onClick={onLast}
                 disabled={currentIndex === 0}
             >
                 上一页
             </button>
-            
-            <div className="btn-small page-indicator">
-                {currentIndex + 1} / {maxIndex + 1}
-            </div>
 
             <button 
-                className={`btn btn-small page-btn ${currentIndex === maxIndex ? "is-disabled" : ""}`}
+                className={`btn btn-small btn-orange ${currentIndex === maxIndex ? "is-disabled" : ""}`}
                 onClick={onNext}
                 disabled={currentIndex === maxIndex}
             >
