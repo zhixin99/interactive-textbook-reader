@@ -1,6 +1,6 @@
 import Sidebar from "../components/Sidebar"
 import { Outlet } from 'react-router-dom';
-import Header from "../components/Header"
+import DashboardHeader from "../components/DashboardHeader"
 
 export default function MainLayout() {
     return (
@@ -8,7 +8,7 @@ export default function MainLayout() {
             <Sidebar />
             
             <div className="content-wrapper">
-                <Header />
+                <DashboardHeader />
                 <main className="main-content">
                     <Outlet />
                 </main>

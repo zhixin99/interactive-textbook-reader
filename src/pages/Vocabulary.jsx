@@ -29,7 +29,7 @@ export default function Vocabulary() {
 
     return (
         <>
-            <section className="main-content">
+            <section className="main-content vocab-dictation-mode">
                 <PageControl 
                     currentIndex={currentPageIndex}
                     maxIndex={maxPageIndex}
@@ -49,7 +49,7 @@ export default function Vocabulary() {
                         </div>
 
                         <div className="play-btn btn" onClick={() => speak(currentWord.en)}>
-                            <i className="fa-regular fa-headphones"></i>
+                            <i className="fa-solid fa-volume-high play-btn"></i>
                         </div>
                     </div>
                     
@@ -59,7 +59,7 @@ export default function Vocabulary() {
                             <div className="sent-cn">{currentWord.sent_cn}</div> 
                         </div>
                         <div className="play-btn btn" onClick={() => speak(currentWord.sent)}>
-                            <i className="fa-regular fa-headphones"></i>
+                            <i className="fa-solid fa-volume-high play-btn"></i>
                         </div>
                     </div>
                 </div>

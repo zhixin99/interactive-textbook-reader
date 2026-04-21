@@ -56,7 +56,7 @@ export default function ActivationPage() {
     };
 
     return (
-        <main className="centered-main">
+        <main className="centered-main home-page-main-content">
             <section className="auth-card">
                 <div className="auth-header">
                     <button onClick={() => navigate('/')} className="back-button">✕</button>
@@ -96,7 +96,7 @@ export default function ActivationPage() {
                         <a 
                             href="https://www.xiaohongshu.com/user/profile/66c362ce000000000d026ceb" 
                             target="_blank" 
-                            className="btn btn-small btn-no-background"
+                            className="btn btn-small btn-no-border"
                         >
                             {t('home.contact_shi')}
                         </a>

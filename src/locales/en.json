@@ -1,7 +1,7 @@
 {
     "home": {
-        "header": "Teacher Shi's English",
-        "title": "Yilin English Interactive Reader",
+        "header": "English with Shi",
+        "title": "English Textbook Interactive Reader",
         "start_button": "Start Learning",
         "footer": "Xiaohongshu & WeChat: shlshyy",
         "follow_button": "Follow Now",
@@ -13,7 +13,7 @@
         "email_is_registered": "Email is already registered",
         "wrong_account": "Incorrect input, please try again",
         "creating": "Creating account...",
-        "have_account": "Already have an account?",
+        "have_account": "Already have an account?  ",
         "log_in_footer": "Log in here", 
         "log_in_title": "Log In",
         "activation_title": "Enter Activation Code",
@@ -21,7 +21,7 @@
         "activate": "Activate",
         "validating": "Validating...",
         "no_activation_code": "No activation code?",
-        "contact_shi": "Contact Teacher Shi",
+        "contact_shi": "Contact Ms. Shi",
         "explain": "Currently, only Grade 4 Semester 2 is available.",
         "updating": "More content coming soon!",
         "available": "Available",
@@ -29,7 +29,7 @@
     },
 
     "dashboard": {
-        "grade": "G4S2", 
+        "grade": "Grade4, Term2", 
         "load": "Loading...",
         "dashboard": "Dashboard",
         "learn": "Learn",
@@ -51,7 +51,7 @@
     
     "learn": {
         "next": "Next",
-        "last": "Previous",
+        "last": "Last",
         "textbook": "Textbook", 
         "vocabulary": "Vocabulary", 
         "dictation": "Dictation"

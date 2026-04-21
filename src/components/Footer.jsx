@@ -10,7 +10,7 @@ export default function Footer () {
             </div>
                 
             <a 
-                className="btn btn-small btn-blue"
+                className="btn btn-small btn-green"
                 href="https://www.xiaohongshu.com/user/profile/66c362ce000000000d026ceb"
                 target="_blank">
                 {t('home.follow_button')}

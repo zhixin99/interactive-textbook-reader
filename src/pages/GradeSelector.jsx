@@ -33,12 +33,12 @@ export default function gradeSelector() {
     const selectorEl = gradeData.map( data => (
         data.available ? (
             <button 
-                className="grade-btn btn btn-small"
+                className="btn btn-small btn-orange"
                 key={data.id}
                 onClick={() => handleSaveSelection(data.grade, data.semester)}
             >
                 {data.label}
-                <p className="grade-status">{t('home.available')}</p>
+                <div className="grade-status">{t('home.available')}</div>
             </button> 
         ) : (
             <div
@@ -54,11 +54,11 @@ export default function gradeSelector() {
 
     
     return (
-        <main className="centered-main grade-select-container">
+        <main className="centered-main home-page-main-content">
             <section className="auth-card">
                 <div className="btn">
-                    <p>{t('home.explain')}</p>
-                    <p>{t('home.updating')}</p>
+                    <h3>{t('home.explain')}</h3>
+                    <h3>{t('home.updating')}</h3>
                 </div>
             
                 <div>

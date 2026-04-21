@@ -6,10 +6,9 @@ export default function HomeHeader() {
     return (
         <header>
             <div className="header-container">
-                <div className="name">{t('home.header')}</div>
-            </div>        
-
-            <LanguageSwitcher />       
+                <img src="/img/logo.png" alt="English with Shi" className="logo"/>
+                <LanguageSwitcher />   
+            </div>            
         </header>
     )
 }

@@ -31,7 +31,7 @@ export default function LoginPage() {
     }
 
     return (
-        <main className="centered-main">
+        <main className="centered-main home-page-main-content">
             <section className="auth-card">
                 <div>
                     <h2 className="auth-title">{t('home.log_in_title')}</h2>

@@ -72,7 +72,7 @@ export default function Dictation() {
     }
 
     return (
-        <section className="main-content">
+        <section className="main-content vocab-dictation-mode">
             <PageControl 
                 currentIndex={currentPageIndex}
                 maxIndex={maxPageIndex}
@@ -80,56 +80,54 @@ export default function Dictation() {
                 onLast={handleLastPage}
             />
 
-            <div className="study-box vocab-dictation-word-container">
-                <div className="word-container">
-                    <form 
-                        className="word-form" 
-                        onSubmit={(e) => {
-                            e.preventDefault()
-                            checkAnswer(currentWord.id, currentWord.en)
-                        }}
-                    >
-                        <div className="form-top-part">
-                            <div className="title-container">
-                                <span className="dictation-chinese">{currentWord.cn}</span>
-                                <span className="play-btn btn" onClick={() => speak(currentWord.en)}>
-                                    <i className="fa-regular fa-headphones"></i>
-                                </span>
-                            </div>
+            <div className="vocab-dictation-word-container">
+                <form 
+                    className="word-form-dictation" 
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                        checkAnswer(currentWord.id, currentWord.en)
+                    }}
+                >
+                    <div className="form-top-part">
+                        <div className="question-container">
+                            <span className="dictation-chinese">{currentWord.cn}</span>
+                            <span className="play-btn btn" onClick={() => speak(currentWord.en)}>
+                                <i className="fa-solid fa-volume-high play-btn"></i>
+                            </span>
                         </div>
+                    </div>
 
-                        <div className="form-bottom-part">
-                            <input 
-                                type="text" 
-                                placeholder={t('dashboard.inputing')}
-                                className={`input-box ${statuses[currentWord.id]}`}
-                                onChange={(e) => {handleInputChange(currentWord.id, e.target.value)}}
-                                value={userInputs[currentWord.id] || ""}
-                            />
+                    <div className="form-bottom-part-dictation">
+                        <input 
+                            type="text" 
+                            placeholder={t('dashboard.inputing')}
+                            className={`input-box ${statuses[currentWord.id]}`}
+                            onChange={(e) => {handleInputChange(currentWord.id, e.target.value)}}
+                            value={userInputs[currentWord.id] || ""}
+                        />
 
-                            <div className="hint-container">
-                                <div 
-                                    className="btn btn-medium btn-green"
-                                    onClick={() => handleHint(currentWord.id)}
-                                >
-                                    <i class="fa-regular fa-lightbulb"></i> {t('dashboard.hint')}
-                                </div>
-                                <div 
-                                    className={!hintStatus[currentWord.id] ? "visually-hidden" : ""}
-                                >
-                                    {currentWord.en}
-                                </div>
-                            </div>
-                            
-                            <button 
-                                type="submit" 
-                                className="btn btn-small btn-orange"
+                        <div className="hint-container-dictation">
+                            <div 
+                                className="btn btn-mini btn-green"
+                                onClick={() => handleHint(currentWord.id)}
                             >
-                                {t('dashboard.check')}
-                            </button>
+                                <i class="fa-regular fa-lightbulb"></i> {t('dashboard.hint')}
+                            </div>
+                            <div 
+                                className={!hintStatus[currentWord.id] ? "visually-hidden" : ""}
+                            >
+                                {currentWord.en}
+                            </div>
                         </div>
-                    </form>
-                </div>
+                        
+                        <button 
+                            type="submit" 
+                            className="btn btn-long btn-orange"
+                        >
+                            {t('dashboard.check')}
+                        </button>
+                    </div>
+                </form>
             </div>
         </section>
 

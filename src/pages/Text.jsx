@@ -15,12 +15,17 @@ export default function Text() {
     const maxPageIndex = pagesArray.length - 1
     const currentPage = pagesArray[currentPageIndex]
 
+    const stopSpeech = () => {
+        window.speechSynthesis.cancel()
+    }
+
     useEffect(() => {
         setCurrentPageIndex(0)
         setTranslationEl("")
     }, [grade, semester, unit])
     
     async function handleNextPage() {
+        stopSpeech()
         if (currentPageIndex < maxPageIndex ) {
             setCurrentPageIndex(prev => prev + 1)
         }
@@ -34,6 +39,7 @@ export default function Text() {
     }
 
     function handleLastPage() {
+        stopSpeech()
         if (currentPageIndex > 0) {
             setCurrentPageIndex(prev => prev - 1)
         } 
@@ -80,33 +86,35 @@ export default function Text() {
 
 
     return (
-        <div onClick={() => setTranslationEl("")}>  
+        <section 
+            className="main-content text-mode"
+            onClick={() => {
+                stopSpeech()
+                setTranslationEl("")
+            }} 
+        >
+                <PageControl 
+                    currentIndex={currentPageIndex}
+                    maxIndex={maxPageIndex}
+                    onNext={handleNextPage}
+                    onLast={handleLastPage}
+                />
 
-            <section className="main-content text-mode" >
-                    <PageControl 
-                        currentIndex={currentPageIndex}
-                        maxIndex={maxPageIndex}
-                        onNext={handleNextPage}
-                        onLast={handleLastPage}
+                <div className="img-container" id="img-container">
+                    <img 
+                        className="textbook-img" 
+                        alt="课文原文" 
+                        src={`/textbook-img/grade${grade}/semester${semester}/unit${unit}/${currentPage.image}`} 
                     />
-
-                    <div className="img-container" id="img-container">
-                        <img 
-                            className="textbook-img" 
-                            alt="课文原文" 
-                            src={`/textbook-img/grade${grade}/semester${semester}/unit${unit}/${currentPage.image}`} 
-                        />
-                        <div className="hotmap-layer">
-                            {hotmapEl}
-                        </div>
-                        <div id="translation-layer" className="translation-layer">
-                            {translationEl}
-                        </div>
+                    <div className="hotmap-layer">
+                        {hotmapEl}
                     </div>
-                
-            </section>
-
-        </div>
+                    <div id="translation-layer" className="translation-layer">
+                        {translationEl}
+                    </div>
+                </div>
+            
+        </section>
 
     )
 }

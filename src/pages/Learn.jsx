@@ -5,6 +5,7 @@ import { db } from "../firebaseConfig"
 import { doc, setDoc } from "firebase/firestore"
 import { useState } from "react"
 import { useTranslation } from 'react-i18next'
+import LearnSection from "../components/LearnSection.jsx"
 
 
 export default function Learn() {
@@ -13,6 +14,7 @@ export default function Learn() {
     const [isSaving, setIsSaving] = useState(false)
     const navigate = useNavigate()
     const { t } = useTranslation()
+    const imgSrc = `/textbook-img/grade${userData.currentGrade}/semester${userData.currentSemester}/unit${userData.currentUnit}/page1.png`
 
     if (!userData || !userData.currentGrade) {
         return <div className="p-8 font-mono">{t('dashboard.load')}</div>;
@@ -23,8 +25,8 @@ export default function Learn() {
         ))
     
     const unitObj = unitsArray.filter(item => item.unit === userData.currentUnit)[0]
-    const unitTitle = unitObj.title
-    const unitIcon = unitObj.icon
+    const unitTitle = unitObj?.title
+    const unitIcon = unitObj?.icon
     
     async function handleSelect(selectedGrade, selectedSemester, selectedUnit) {
         navigate(`/learn/${selectedGrade}/${selectedSemester}/${selectedUnit}/text`)
@@ -45,56 +47,68 @@ export default function Learn() {
 
     const unitsEl = unitsArray.map(item => (
         <div className="unit-container">
+            
             <div className="unit-container-top">
-                <h3>Unit{item.unit}</h3>
-                <div className="title-container">
-                    <span className="title-icon">{item.icon}</span>
-                    <span> {item.title}</span>
-                </div>
+                <div className="title-icon">{item.icon}</div>
             </div>
-            <button 
-                key={item.unit}
-                onClick={() => handleSelect(item.grade, item.semester, item.unit)}
-                className="btn btn-medium btn-orange start-btn"
-            >
-                {t('dashboard.start')}
-            </button>
+
+            <div className="unit-container-bottom">
+                <div>
+                    <h3>Unit{item.unit}</h3>
+                    <p className="description">{item.title}</p>
+                </div>
+  
+
+                <button 
+                    key={item.unit}
+                    onClick={() => handleSelect(item.grade, item.semester, item.unit)}
+                    className="btn btn-long btn-no-background"
+                >
+                    {t('dashboard.start')}
+                </button>
+            </div>
+                          
         </div>
 
     ))
 
 
     return (
-        <div className="learn-container">
+        <>
             {userData.currentUnit && (
-                <section className="study-box width-limit">
-                    <h2><i class="fa-regular fa-hourglass"></i> {t('dashboard.last_lesson')}</h2>
-                    
-                    <div className="unit-container">
-                        <div className="unit-container-top">
-                            <h3>Unit{userData.currentUnit}</h3>
-                            <div className="title-container">
-                                <span className="title-icon">{unitIcon}</span>
-                                <p>{unitTitle}</p>
+                <LearnSection
+                    icon={<i class="fa-solid fa-clock-rotate-left section-header-icon"></i>}
+                    title={t('dashboard.last_lesson')}
+                >
+                    <div className="last-lesson-container">
+                        <div className="last-lesson-container-left">
+                            <div className="cover-image-container">
+                                <img src={imgSrc} alt={`Cover image of unit${userData.currentUnit}`} className="unit-cover-image"/>
                             </div>
                         </div>
 
-                        <button 
-                            onClick={() => navigate(`/learn/${userData.currentGrade}/${userData.currentSemester}/${userData.currentUnit}/text`)}
-                            className="btn btn-medium btn-orange start-btn"
-                        >
-                            {t('dashboard.continue')}
-                        </button>
+                        <div className="last-lesson-container-right">
+                            <h3 className="last-lesson-title"> Unit{userData.currentUnit}{unitIcon}</h3>
+                            <p className="description">{unitTitle}</p>
+                            <button 
+                                onClick={() => navigate(`/learn/${userData.currentGrade}/${userData.currentSemester}/${userData.currentUnit}/text`)}
+                                className="btn btn-long btn-orange continue-btn"
+                            >
+                                {t('dashboard.continue')} <i class="fa-solid fa-circle-chevron-right"></i> 
+                            </button>
+                        </div>
                     </div>
-                </section>
+                </LearnSection>
             )}
 
-            <section className="study-box">
-                <h2><i class="fa-solid fa-chalkboard"></i> {t('dashboard.courses')}</h2>
-                <div className="units-container">
+            <LearnSection 
+                icon={<i class="fa-solid fa-layer-group section-header-icon"></i>}
+                title={t('dashboard.courses')}
+            >
+                <div className="all-courses-container">
                     {unitsEl}
                 </div>
-            </section>
-        </div>
+            </LearnSection>
+        </>
     ) 
 }

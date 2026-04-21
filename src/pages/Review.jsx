@@ -4,6 +4,7 @@ import { useState } from "react"
 import { useAuth } from "../context/AuthContext"
 import { speak } from "../utility/speechUtils.js"
 import { useTranslation } from 'react-i18next'
+import LearnSection from "../components/LearnSection.jsx"
 
 export default function Review() {
     const { userData, user } = useAuth() 
@@ -51,64 +52,64 @@ export default function Review() {
 
     
     const mistakeEl = mistakeArray.map(vocab => (
-            <section>
-                <div className="word-container">
-                    <form 
-                        className="word-form" 
-                        onSubmit={(e) => {
-                            e.preventDefault()
-                            checkAnswer(vocab.id, vocab.en)
-                        }}
-                    >
-                        <div className="form-top-part">
-                            <div className="title-container">
-                                <span className="dictation-chinese">{vocab.cn}</span>
-                                <span 
-                                    className="play-bt btn" 
-                                    onClick={() => speak(vocab.en)}
-                                >
-                                    <i className="fa-regular fa-headphones"></i>
-                                </span>
-                            </div>
-                        </div>
+        <div className="word-container">
+            <form 
+                className="word-form" 
+                onSubmit={(e) => {
+                    e.preventDefault()
+                    checkAnswer(vocab.id, vocab.en)
+                }}
+            >
+                <div className="form-top-part">
+                    <div className="question-container">
+                        <span className="dictation-chinese">{vocab.cn}</span>
+                        <span 
+                            className="play-btn btn" 
+                            onClick={() => speak(vocab.en)}
+                        >
+                            <i className="fa-solid fa-volume-high play-btn"></i>
+                        </span>
+                    </div>
 
-                        <div className="form-bottom-part">
-                            <input 
-                                type="text" 
-                                placeholder={t('dashboard.inputing')}
-                                className={`input-box ${statuses[vocab.id]}`}
-                                onChange={(e) => handleInputChange(vocab.id, e.target.value)}
-                            />
-
-                            <div className="hint-container">
-                                <div 
-                                    className="btn btn-medium btn-green"
-                                    onClick={() => handleHint(vocab.id)}
-                                >
-                                    <i class="fa-regular fa-lightbulb"></i> {t('dashboard.hint')}
-                                </div>
-                                <div 
-                                    className={!hintStatus[vocab.id] ? "visually-hidden" : ""}
-                                >
-                                    {vocab.en}
-                                </div>
-                            </div>
-
-                            <button 
-                                type="submit" 
-                                className="btn btn-small btn-orange"
-                            >
-                                {t('dashboard.check')}
-                            </button>
-                        </div>
-                    </form>
+                    <input 
+                        type="text" 
+                        placeholder={t('dashboard.inputing')}
+                        className={`input-box ${statuses[vocab.id]}`}
+                        onChange={(e) => handleInputChange(vocab.id, e.target.value)}
+                    />
                 </div>
-            </section>
+
+                <div className="form-bottom-part">
+                    <div className="hint-container">
+                        <div 
+                            className="btn btn-mini btn-green btn-hint"
+                            onClick={() => handleHint(vocab.id)}
+                        >
+                            {t('dashboard.hint')}
+                        </div>
+                        <div 
+                            className={!hintStatus[vocab.id] ? "visually-hidden" : ""}
+                        >
+                            {vocab.en}
+                        </div>
+                    </div>
+
+                    <button 
+                        type="submit" 
+                        className="btn btn-dictation btn-orange"
+                    >
+                        {t('dashboard.check')}
+                    </button>
+                </div>
+            </form>
+        </div>
     ))
     return (
-        <div className="study-box">
-            <h2><i className="fa-solid fa-triangle-exclamation"></i> {t('dashboard.my_mistakes')}</h2>
+        <LearnSection
+            icon={<i class="fa-solid fa-triangle-exclamation section-header-icon"></i>}
+            title={t('dashboard.my_mistakes')}
+        >
             {mistakeEl}
-        </div>
+        </LearnSection>
     )
 }

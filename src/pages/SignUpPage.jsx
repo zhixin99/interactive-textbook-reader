@@ -39,7 +39,7 @@ export default function SignUpPage() {
     };
 
     return (
-        <main className="centered-main">
+        <main className="centered-main home-page-main-content">
             <section className="auth-card">
                 <div className="auth-header">
                     <button onClick={() => navigate('/')} className="back-button">✕</button>
@@ -90,8 +90,8 @@ export default function SignUpPage() {
                     </form>
 
                     <div className="auth-footer">
-                        <span>{t('home.have_account')}</span>
-                        <button onClick={() => navigate('/login')} className="btn btn-small btn-no-background">
+                        <span>{t('home.have_account')} </span>
+                        <button onClick={() => navigate('/login')} className="btn btn-small btn-no-border">
                             {t('home.log_in_footer')}
                         </button>
                     </div>

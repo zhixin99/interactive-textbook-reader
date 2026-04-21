@@ -1,5 +1,6 @@
 import { useAuth } from '../context/AuthContext'
 import { useTranslation } from 'react-i18next'
+import LearnSection from "../components/LearnSection.jsx"
 
 export default function Dashboard() {
     const { userData } = useAuth()
@@ -11,10 +12,12 @@ export default function Dashboard() {
 
     return (
         <>  
-            <section className="study-box width-limit">
-                <h2><i className="fa-regular fa-lightbulb"></i> {t('dashboard.progress')}</h2>
+            <LearnSection
+                icon={<i className="fa-regular fa-lightbulb"></i>}
+                title={t('dashboard.progress')}
+            >
                 <div className="card-container">
-                    <div className="stats-card box-pink">
+                    <div className="stats-card box-blue">
                         <i class="fa-solid fa-book"></i>
                         <div className="text-bold">{t('dashboard.have_studied')}</div >
                         <div className="study-data">{learntUnits}{t('dashboard.unit')}</div>
@@ -25,10 +28,7 @@ export default function Dashboard() {
                         <div className="study-data">{dictatedWords}{t('dashboard.words')}</div>
                     </div>
                 </div>
-
-            </section>
-
+            </LearnSection>
         </>
-        
     )
 }

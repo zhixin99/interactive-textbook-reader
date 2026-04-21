@@ -9,8 +9,9 @@ export default function LanguageSwitcher() {
     };
 
     return (
-        <button onClick={toggleLanguage} className="btn btn-mini">
-            {i18n.language === 'zh' ? 'English' : '中文'}
+        <button onClick={toggleLanguage} className="btn btn-mini btn-white">
+            {i18n.language === 'zh' ? 'EN' : '中文'}
+            <i class="fa-solid fa-repeat"></i>
         </button>
     );
 }
